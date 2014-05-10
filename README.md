@@ -169,3 +169,29 @@ Tests run: 4, Failures: 1, Errors: 1, Skipped: 0
 
 ## 1.4 How Junit3 find the test method? use java reflection?
 
+ - read source code from junit.textui.TestRunner
+    * main() --> start(args): 很简洁的main方法，退出处理做的不错
+    * start(args) : maybe the junit3 only have few arguments, so the args processing is easy and raw
+        - Usage: TestRunner [-wait] testCaseName, where name is the name of the TestCase class
+    * after processing the arguments,
+        ```java
+            	try {
+            			Test suite= getTest(testCase);
+            			return doRun(suite, wait);
+            		}
+
+        ```
+    * Test getTest(String suiteClassName):
+    * Test interface have 2 abstract method, run() and countTestCases()
+ - Above all, junit 3 use reflection to find test suite and run.
+
+ ## 1.5 junit 3 packages
+  - textui
+  - ~~swingui~~: //
+  - runner
+  - framework
+    - Test interface: run(TestResult result) method, result as a parameter for collect all result
+    - **TestCase**: very important class that implements Test.
+    -
+  - extensions
+  - ~~awtui~~: //
